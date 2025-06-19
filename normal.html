@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>+Realm MC Official Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Playfair', sans-serif;
+      background: linear-gradient(135deg, #850068, #316600, #015b6b, #7e027e);
+      background-size: 400% 400%;
+      animation: rgbFlow 15s ease infinite;
+      color: white;
+    }
+
+    @keyframes rgbFlow {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    header {
+      background-color: #000;
+      text-align: center;
+      padding: 30px;
+      font-size: 25px;
+      color: #ff00ea;
+      border-bottom: 3px solid #ff0000;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    header b {
+      color: #00ffcc;
+    }
+
+    .tab-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 20px;
+    }
+    
+    .tab {
+      cursor: pointer;
+      padding: 15px 30px;
+      font-size: 18px;
+      background-color: #ff00ff;
+      border-radius: 12px;
+      border: 2px solid #ff0000;
+      color: white;
+      font-weight: bold;
+      box-shadow: 0 0 15px #e100ff;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .tab.active,
+    .tab:hover {
+      background-color: #480252;
+      color: black;
+      box-shadow: 0 0 25px #f700ea;
+    }
+
+    .cards-container {
+      max-width: 1000px;
+      margin: 25px auto 50px auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    .card {
+      background: rgba(0, 0, 0, 0.85);
+      border: 3px solid #ff00ea;
+      border-radius: 16px;
+      padding: 25px 20px;
+      width: 260px;
+      text-align: center;
+      box-shadow: 0 0 25px #ff00ff;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+    }
+
+    .card:hover {
+      transform: scale(1.07);
+      box-shadow: 0 0 40px #ff00ff;
+    }
+
+    .title {
+      font-size: 25px;
+      color: #ea00ff;
+      margin-bottom: 12px;
+      font-weight: bold;
+    }
+
+    .price {
+      font-size: 20px;
+      color: #ff0000;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .quantity {
+      font-size: 14px;
+      color: rgb(165, 113, 250);
+      margin-bottom: 10px;
+    }
+
+    .features {
+      font-size: 14px;
+      color: #ddd;
+      margin-bottom: 18px;
+      min-height: 70px;
+    }
+
+    .buy-btn {
+      background-color: #ff0000;
+      color: black;
+      font-size: 14px;
+      font-family: 'Minecraft', sans-serif;
+      padding: 10px 22px;
+      border: none;
+      cursor: pointer;
+      border-radius: 10px;
+      box-shadow: 0 0 18px #ff00f2;
+      transition: background-color 0.3s ease;
+    }
+
+    .buy-btn:hover {
+      background-color: #ff00d4;
+    }
+
+    .form {
+      max-width: 520px;
+      background: rgba(0, 0, 0, 0.85);
+      margin: 0 auto 60px auto;
+      padding: 30px 20px;
+      border-radius: 18px;
+      box-shadow: 0 0 40px #ff00f2;
+      text-align: center;
+    }
+
+    .form h3 {
+      color: #ff0000;
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
+
+    .form input[type="text"] {
+      width: 100%;
+      padding: 14px 12px;
+      margin-bottom: 18px;
+      font-family: sans-serif;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 2px solid #ff00ff;
+      background-color: #000;
+      color: white;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease;
+    }
+
+    .form input[type="text"]:focus {
+      outline: none;
+      border-color: #ff0000;
+      box-shadow: 0 0 8px #ff006a;
+    }
+
+    .submit-btn {
+      background: linear-gradient(90deg, #ea00ff, #00ff4c);
+      font-weight: bold;
+      color: black;
+      transition: background 0.4s ease;
+      background-color: #027227;
+      font-size: 14px;
+      font-family: 'Playfair', sans-serif;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+      box-shadow: 0 0 15px #09ff00;
+    }
+
+    .submit-btn:hover {
+      background: linear-gradient(90deg, #ff00aa, #fffb00);
+    }
+
+    #successMsg {
+      display: none;
+      background: #ff00d4;
+      color: #000000;
+      padding: 10px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      font-weight: bold;
+      box-shadow: 0 0 12px #ff00dd;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header><b>+Realm MC</b> Official Store</header>
+
+  <div class="tab-container">
+    <div class="tab active" data-category="ranks">Ranks</div>
+    <div class="tab" data-category="keys">Crates</div>
+    <div class="tab" data-category="claimBlocks">Claim Blocks</div>
+  </div>
+
+  <div class="cards-container" id="cardsContainer">
+    <!-- Rendering with js -->
+  </div>
+
+  <div class="form">
+    <div id="successMsg">Successfully submitted!</div>
+    <h3>Send Money in Bkash/Nagad: 01771908686 </h3>
+    <input type="text" id="productInput" placeholder="Select your product from the lists." readonly />
+    <input type="text" id="mcNameInput" placeholder="Enter your minecraft username. eg: GamerSuspense" />
+    <input type="text" id="txnIdInput" placeholder="Give your transaction id. eg: 542FJ4K" />
+    <button class="submit-btn" onclick="submitPayment()">Sumbit Your Order !</button>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCmW7d88MZhGxFmAmPos3YVFC8I5nX18x8",
+      authDomain: "srmt-109c2.firebaseapp.com",
+      projectId: "srmt-109c2",
+      storageBucket: "srmt-109c2.firebasestorage.app",
+      messagingSenderId: "411226255546",
+      appId: "1:411226255546:web:93af81fc49c5aa32215283",
+      measurementId: "G-PECM4R454S"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const data = {
+      ranks: [
+        { title: "🟡 VIP", price: "Price: 100 BDT", quantity: "cooldown: 2 month", features: "⭕ Rewards: <br><br>🔰 can set 4 homes<br>🔰 500 Claim blocks<br>🔰 /echest access <br><br>" },
+        { title: "🔵 DEADLY", price: "Price: 120 BDT.", quantity: "cooldown: 3 month", features: "⭕ Rewards: <br><br>🔰 can set 4 homes<br>🔰 700 Claim blocks<br>🔰 /echest access <br><br> " },
+        { title: "🔴 PRIME", price: "Price: 180 BDT.", quantity: "cooldown: 4 month", features: "⭕ Rewards: <br><br>🔰 can set 5 homes<br>🔰 1k Claim blocks<br>🔰 /echest access <br>🔰 5.5k money " },
+        { title: "🟣 REALM", price: "Price: 250 BDT.", quantity: "cooldown: 5 month", features: "⭕ Rewards: <br><br>🔰 can set 5 homes<br>🔰 1.5k Claim blocks<br>🔰 /echest access <br>🔰 10k money <br><br>" },
+        { title: "🟠 KITSUNE", price: "Price: 500 BDT.", quantity: "cooldown: 6 month", features: "⭕ Rewards: <br><br>🔰 can set 10 homes<br>🔰 10k Claim blocks<br>🔰 /echest access <br>🔰 1m money <br><br>" },
+      ],
+      keys: [
+        { title: "💦 Earth Crate Key", price: "Price: 100 BDT", quantity: "10x", features: "⚪ Earth Crate" },
+        { title: "🦅 Superior Crate Key", price: "Price: 150 BDT", quantity: "15x", features: "⚪ Superior Crate" },
+        { title: "👀 Knight Crate Key", price: "Price: 250 BDT", quantity: "20x", features: "⚪ Knight Crate" },
+        { title: "🔺 Realm Crate Key" , price: "Price: 300 BDT", quantity: "20x", features: "⚪ Realm Crate" },
+      ],
+      claimBlocks: [
+        { title: "🏠 100 Claim Blocks", price: "10 Bdt.", quantity: "100 block", features: "⚪ low" },
+        { title: "🏡 500 Claim Blocks", price: "50 Bdt.", quantity: "500 block", features: "⚪ medium" },
+        { title: "🏰 1k Claim Blocks", price: "90 Bdt.", quantity: "1000 block", features: "⚪ ultra medium" },
+        { title: "🏯 1.5k Claim Blocks", price: "120 Bdt.", quantity: "1500 block", features: "⚪ large" },
+        { title: "🏢 2k Claim Blocks", price: "150 Bdt.", quantity: "2000 block", features: "⚪ extra large" },
+        { title: "🏬 3k Claim Blocks", price: "200 Bdt.", quantity: "3000 block", features: "⚪ largest" },
+      ]
+    };
+
+    const tabs = document.querySelectorAll('.tab');
+    const cardsContainer = document.getElementById('cardsContainer');
+
+    function renderCards(category) {
+      cardsContainer.innerHTML = '';
+      data[category].forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `
+        <div class="title">${item.title}</div>
+        <div class="quantity">${item.quantity}</div>
+        <div class="price">${item.price}</div>
+        <div class="features">${item.features}</div>
+        <button class="buy-btn">Buy</button>
+      `;
+        div.querySelector('button').addEventListener('click', () => {
+          document.getElementById('productInput').value = item.title + " - " + item.quantity + " - " + item.price;
+          document.getElementById('productInput').focus();
+        });
+        cardsContainer.appendChild(div);
+      });
+    }
+
+    renderCards('ranks');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const category = tab.getAttribute('data-category');
+        renderCards(category);
+      });
+    });
+
+    window.submitPayment = async function () {
+      const product = document.getElementById('productInput').value.trim();
+      const mcName = document.getElementById('mcNameInput').value.trim();
+      const txnId = document.getElementById('txnIdInput').value.trim();
+      const msgBox = document.getElementById('successMsg');
+
+      if (!product || !mcName || !txnId) {
+        alert("Fillup all informations correctly.");
+        return;
+      }
+      try {
+        const { addDoc, collection, serverTimestamp } = await import("https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js");
+        await addDoc(collection(db, "payments"), {
+          rankOrItem: product,
+          minecraftName: mcName,
+          transactionId: txnId,
+          timestamp: serverTimestamp()
+        });
+        msgBox.style.display = 'block';
+        setTimeout(() => { msgBox.style.display = 'none'; }, 5000);
+        document.getElementById('productInput').value = '';
+        document.getElementById('mcNameInput').value = '';
+        document.getElementById('txnIdInput').value = '';
+      } catch (e) {
+        alert("Sorry, your order failed !");
+        console.error(e);
+      }
+    };
+  </script>
+  <!-- Support Info Box -->
+  <div style="
+  max-width: 800px;
+  margin: 30px auto 60px auto;
+  background-color: rgba(0, 0, 0, 0.85);
+  padding: 25px;
+  border-left: 5px solid #ff009d;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #d400ff;
+  font-family: 'Playfair', sans-serif;
+  font-size: 15px;
+  color: #ffffff;
+  line-height: 1.6;
+  text-align: center;
+">
+    For more info, join our <a href="https://discord.gg/VyfgABtJdR" target="_blank"
+      style="color:#ff0000; text-decoration:underline;">Discord</a> server.
+  </div>
+</body>
+
+</html>
+
